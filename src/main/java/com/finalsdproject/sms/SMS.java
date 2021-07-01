@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 public class SMS {
 
     private String receiver;
+    private String message;
 
 }

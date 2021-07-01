@@ -15,7 +15,7 @@ public class SMSService {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         String FROM_NUMBER = "+16014292297";
-        Message.creator(new PhoneNumber(sms.getReceiver()), new PhoneNumber(FROM_NUMBER), "GAMBARE GAMBARE!").create();
+        Message.creator(new PhoneNumber(sms.getReceiver()), new PhoneNumber(FROM_NUMBER), sms.getMessage()).create();
     }
 
 }

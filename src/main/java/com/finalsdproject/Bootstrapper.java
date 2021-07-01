@@ -1,18 +1,14 @@
 package com.finalsdproject;
 
+import com.finalsdproject.animal.AnimalRepository;
 import com.finalsdproject.animal.SpeciesRepository;
 import com.finalsdproject.animal.model.Animal;
-import com.finalsdproject.animal.AnimalRepository;
 import com.finalsdproject.animal.model.ESpecies;
 import com.finalsdproject.animal.model.Species;
-import com.finalsdproject.email.EmailRequestDTO;
-import com.finalsdproject.email.EmailService;
 import com.finalsdproject.owner.OwnerRepository;
 import com.finalsdproject.owner.model.Owner;
 import com.finalsdproject.security.AuthService;
 import com.finalsdproject.security.dto.SignupRequest;
-import com.finalsdproject.sms.SMS;
-import com.finalsdproject.sms.SMSService;
 import com.finalsdproject.user.RoleRepository;
 import com.finalsdproject.user.UserRepository;
 import com.finalsdproject.user.model.ERole;
@@ -38,8 +34,6 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
     private final AnimalRepository animalRepository;
     private final SpeciesRepository speciesRepository;
     private final OwnerRepository ownerRepository;
-    private final EmailService emailService;
-    private final SMSService smsService;
 
     @Value("${app.bootstrap}")
     private Boolean bootstrap;
@@ -127,10 +121,10 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
             Iris.setOwner(owner);
             animalRepository.save(Iris);
 
-            EmailRequestDTO emailRequestDTO = EmailRequestDTO.builder()
-                    .subject("Sukuna")
-                    .message("GAMBARE GAMBARE")
-                    .build();
+//            EmailRequestDTO emailRequestDTO = EmailRequestDTO.builder()
+//                    .subject("Sukuna")
+//                    .message("GAMBARE GAMBARE")
+//                    .build();
 //            emailService.sendMail(emailRequestDTO);
 //
 //            smsService.send(SMS.builder()
