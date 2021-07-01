@@ -10,32 +10,32 @@
         single-line
         hide-details
       ></v-text-field>
+      <v-btn @click="sendMail">Send Email</v-btn>
     </v-card-title>
     <v-data-table
-      :headers="headers"
-      :items="animals"
-      @click:row="adoptAnimal"
+        :headers="headers"
+        :items="animals"
     ></v-data-table>
-    <AnimalDialogUser
-      :opened="dialogVisible"
-      @refresh="refreshList"
-    ></AnimalDialogUser>
+    <EmailSend
+        :opened="dialogVisible"
+        @refresh="refreshList"
+    ></EmailSend>
+
   </v-card>
 </template>
 
 <script>
 import api from "../api";
-import AnimalDialogUser from "@/components/AnimalDialogUser";
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
+import EmailSend from "@/components/EmailSend";
 
 export default {
   name: "EmployeeView",
-  components: { AnimalDialogUser },
+  components: { EmailSend },
   data() {
     return {
       animals: [],
-      message: [],
       search: "",
       headers: [
         {
@@ -50,20 +50,14 @@ export default {
         { text: "Description", value: "description" },
       ],
       dialogVisible: false,
-      selectedItem: {},
     };
   },
   methods: {
-    adoptAnimal() {
+    sendMail(){
       this.dialogVisible = true;
-    },
-    adoptedAnimals() {
-      api.animals.adoptedAnimals();
     },
 
     async refreshList() {
-      this.dialogVisible = false;
-      this.selectedItem = {};
       this.animals = await api.animals.allAnimals();
     },
   },

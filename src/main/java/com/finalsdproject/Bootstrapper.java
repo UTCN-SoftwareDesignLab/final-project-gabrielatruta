@@ -67,9 +67,9 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
                 );
             }
             authService.register(SignupRequest.builder()
-                    .email("gabi@email.com")
-                    .username("gabi")
-                    .password("Gabriela3!")
+                    .email("admin@email.com")
+                    .username("admin")
+                    .password("Administrator3!")
                     .roles(Set.of("ADMINISTRATOR"))
                     .build());
             authService.register(SignupRequest.builder()
@@ -131,11 +131,11 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
                     .subject("Sukuna")
                     .message("GAMBARE GAMBARE")
                     .build();
-            emailService.sendMail(emailRequestDTO);
-
-            smsService.send(SMS.builder()
-                    .receiver("+40784780820")
-                    .build());
+//            emailService.sendMail(emailRequestDTO);
+//
+//            smsService.send(SMS.builder()
+//                    .receiver("+40784780820")
+//                    .build());
 
         }
     }

@@ -38,8 +38,6 @@ public class OwnerService {
         Animal animal = animalRepository.findById(animalID)
                 .orElseThrow(() -> new EntityNotFoundException("Animal not found with id: " + animalID));
 
-        Owner owner = ownerMapper.fromDTO(ownerDTO);
-
         Owner actOwner = ownerRepository.save(ownerMapper.fromDTO(ownerDTO));
         animal.setOwner(actOwner);
         animalRepository.save(animal);

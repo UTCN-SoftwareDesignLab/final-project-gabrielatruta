@@ -64,11 +64,6 @@ export default {
             .then(() => this.$emit("refresh"));
       }
     },
-    // editAnimal() {
-    //   api.animals
-    //       .edit(this.item)
-    //       .then(() => this.$emit("refresh"));
-    // },
     deleteAnimal() {
       api.animals.deleteAnimal(this.item.id).then(() => this.$emit("refresh"));
     },

@@ -1,8 +1,6 @@
 package com.finalsdproject.animal;
 
 import com.finalsdproject.animal.model.AnimalDTO;
-import com.finalsdproject.email.EmailRequestDTO;
-import com.finalsdproject.email.EmailServiceFactory;
 import com.finalsdproject.report.ReportServiceFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
@@ -24,12 +22,6 @@ public class AnimalController {
 
     private final AnimalService animalService;
     private final ReportServiceFactory reportServiceFactory;
-    private final EmailServiceFactory emailServiceFactory;
-
-    @PostMapping(EMAIL)
-    public void sendAdoptionRequest(@RequestBody EmailRequestDTO emailRequestDTO){
-        emailServiceFactory.sendMail(emailRequestDTO);
-    }
 
     @GetMapping
     public List<AnimalDTO> allAnimals() {
@@ -60,11 +52,6 @@ public class AnimalController {
     public AnimalDTO edit(@RequestBody AnimalDTO animalDTO, @PathVariable Long id) {
         return animalService.edit(id, animalDTO);
     }
-
-//    @PutMapping(ADOPT + ENTITY)
-//    public AnimalDTO adoptAnimal(@RequestBody AnimalDTO animalDTO, @PathVariable Long id) {
-//        return animalService.adoptAnimal(animalDTO, id);
-//    }
 
     @GetMapping(ENTITY)
     public AnimalDTO getAnimal(@PathVariable Long id) {

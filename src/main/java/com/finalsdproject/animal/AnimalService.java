@@ -2,8 +2,6 @@ package com.finalsdproject.animal;
 
 import com.finalsdproject.animal.model.Animal;
 import com.finalsdproject.animal.model.AnimalDTO;
-import com.finalsdproject.owner.OwnerRepository;
-import com.finalsdproject.owner.model.Owner;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.finalsdproject.animal.model.ESpecies.DOG;
@@ -22,7 +19,6 @@ public class AnimalService {
 
     private final AnimalRepository animalRepository;
     private final AnimalMapper animalMapper;
-    private final OwnerRepository ownerRepository;
     private final SimpMessageSendingOperations webSock;
 
     public List<AnimalDTO> allAnimals() {
@@ -80,17 +76,5 @@ public class AnimalService {
 
     public AnimalDTO get(Long id) {
         return  animalMapper.toDTO(findById(id));
-    }
-
-    public AnimalDTO adoptAnimal(AnimalDTO animalDTO, Long ownerID) {
-        Animal adoptedAnimal = findById(animalDTO.getId());
-        Owner owner = ownerRepository.findById(ownerID)
-                .orElseThrow(() -> new EntityNotFoundException("Owner with id = " + ownerID + " doesn't exist!"));
-        adoptedAnimal.setOwner(owner);
-        owner.setAnimals(Set.of(adoptedAnimal));
-        ownerRepository.save(owner);
-        return animalMapper.toDTO(
-                animalRepository.save(adoptedAnimal)
-        );
     }
 }

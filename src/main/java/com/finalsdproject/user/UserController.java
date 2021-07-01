@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.finalsdproject.URLMapping.ENTITY;
-import static com.finalsdproject.URLMapping.USER;
+import static com.finalsdproject.URLMapping.*;
 
 @RestController
 @RequestMapping(USER)

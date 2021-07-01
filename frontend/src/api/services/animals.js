@@ -41,13 +41,5 @@ export default {
             document.body.appendChild(link);
             link.click();
         });
-    },
-    sendAdoptionRequest(email) {
-        return HTTP.post(BASE_URL + "animals/email", email, {
-            headers: authHeader(),
-        }).then((response) => {
-            return response.data;
-        });
     }
-
 };
